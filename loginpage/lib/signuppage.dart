@@ -9,6 +9,7 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   bool ischeck=false;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +17,7 @@ class _SignupPageState extends State<SignupPage> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
               height: 889,
@@ -33,17 +35,17 @@ class _SignupPageState extends State<SignupPage> {
                 children: [SizedBox(height: 50,),
                   Center(
                     child: Container(
-                      height: 500,
+                      height: 580,
                       width: 400,
                       decoration: BoxDecoration(
                           // color: Colors.transparent,
                           // border: Border.all(color: Colors.grey, width: .4),
                           borderRadius: BorderRadius.circular(20)),
-                      child: Column(
+                      child: Column( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          SizedBox(
-                            height: 10,
-                          ),
+                          // SizedBox(
+                          //   height: 10,
+                          // ),
                           Text(
                             "SIGNUP",
                             style: TextStyle(
@@ -54,7 +56,7 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                           ),
                           SizedBox(
-                            height: 95,
+                            height: 30,
                           ),
                           Container(
                             height: 50,
@@ -137,9 +139,9 @@ class _SignupPageState extends State<SignupPage> {
                             )),
                           ),
                           // ========================================================================================
-                          SizedBox(
-                            height: 40,
-                          ),
+                          // SizedBox(
+                          //   height: 40,
+                          // ),
                           Container(
                             height: 69,
                             width: 270,
@@ -183,6 +185,53 @@ class _SignupPageState extends State<SignupPage> {
                               ],
                             ),
                           ),
+                          // =======================================================================
+                           Container(
+                            height: 69,
+                            width: 270,
+                            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                    child: TextField(
+                                  decoration: InputDecoration(
+                                      fillColor: Colors.white38,
+                                      filled: true,
+                                      border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(15),
+                                          borderSide: BorderSide(
+                                              width: .1, color: Colors.green)),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(15),
+                                          borderSide: BorderSide(width: .1)),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(15),
+                                          borderSide: BorderSide(width: .1)),
+                                      prefixIcon: Icon(
+                                        Icons.remove_red_eye,
+                                        color: Colors.white,
+                                      ),
+                                      labelText: "   Conform-password",
+                                      labelStyle: TextStyle(color: Colors.white)),
+                                )),SizedBox(height: 2,),
+                                Row(
+                                  children: [
+                                    SizedBox(width: 5,),
+                                    Container(height: 10,width: 15,
+                                      child: Checkbox(
+                                        shape: BeveledRectangleBorder(side: BorderSide(color: Colors.white)),
+                                        checkColor: const Color.fromARGB(255, 243, 1, 231),
+                                        value: ischeck, onChanged: (value) {
+                                      setState(() {
+                                        ischeck=!ischeck;
+                                      });
+                                                                        },),
+                                    ),
+                                    Text("  Show password",style: TextStyle(color: Colors.white,letterSpacing: 0),),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
                           // ============================================================================================
                           SizedBox(
                             height: 50,
@@ -200,10 +249,15 @@ class _SignupPageState extends State<SignupPage> {
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
                                       width: .3, color: Colors.white)),
-                              child: TextButton(
+                              child: TextButton(onFocusChange: (value) {
+                                
+                              },
+                                style: TextButton.styleFrom(
+                                  
+                                ),
                                   onPressed: () {},
                                   child: Text(
-                                    "Login",
+                                    "Signup",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
@@ -217,10 +271,10 @@ class _SignupPageState extends State<SignupPage> {
                   ),SizedBox(height: 70,),
                   Row(mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Terms and policy ",
-                        style: TextStyle(color: Colors.white),
-                      ),
+                      // Text(
+                        // "Terms and policy ",
+                        // style: TextStyle(color: Colors.white),
+                      // ),
                       SizedBox(
                         width: 5,
                       ),

@@ -5,7 +5,10 @@ import 'package:loginpage/signuppage.dart';
 void main() {
   runApp(
     MaterialApp(
-      home: SignupPage(),
+      home: LoginPage(),
+      routes: {
+        "signup":(context)=>SignupPage()
+      },
     )
   );
 }

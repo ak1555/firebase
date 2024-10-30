@@ -163,7 +163,9 @@ class _LoginPageState extends State<LoginPage> {
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey)),
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, "signup");
+                            },
                             child: Text(
                               "SignUp",
                               style:
