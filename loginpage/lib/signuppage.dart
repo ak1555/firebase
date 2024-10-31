@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SignupPage extends StatefulWidget {
@@ -8,7 +9,17 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+    TextEditingController _conformpassword = TextEditingController();
+    
   bool ischeck = false;
+
+  Future signin() async {
+    await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: _email.text.trim(), password: _password.text.trim());
+        
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +32,7 @@ class _SignupPageState extends State<SignupPage> {
           children: [
             Container(
               height: 889,
-              width: MediaQuery.of(context).size.width - 10,
+              width: MediaQuery.of(context).size.width - 5,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.blue,
@@ -51,50 +62,58 @@ class _SignupPageState extends State<SignupPage> {
                           // SizedBox(
                           //   height: 10,
                           // ),
-                          Text(
-                            "SIGNUP",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 23,
-                              letterSpacing: 2,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 60,
+                              ),
+                              Text(
+                                "SIGNUP",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 23,
+                                  letterSpacing: 2,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(
                             height: 30,
                           ),
-                          Container(
-                            height: 50,
-                            width: 270,
-                            child: Expanded(
-                                child: TextField(
-                              decoration: InputDecoration(
-                                  fillColor: Colors.white38,
-                                  filled: true,
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                      borderSide: BorderSide(
-                                          width: .1, color: Colors.green)),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                      borderSide: BorderSide(width: .1)),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                      borderSide: BorderSide(width: .1)),
-                                  prefixIcon: Icon(
-                                    Icons.perm_identity_rounded,
-                                    color: Colors.white,
-                                  ),
-                                  labelText: "   Username",
-                                  labelStyle: TextStyle(color: Colors.white)),
-                            )),
-                          ),
+                          // Container(
+                          //   height: 50,
+                          //   width: 270,
+                          //   child: Expanded(
+                          //       child: TextField(
+                          //     decoration: InputDecoration(
+                          //         fillColor: Colors.white38,
+                          //         filled: true,
+                          //         border: OutlineInputBorder(
+                          //             borderRadius: BorderRadius.circular(15),
+                          //             borderSide: BorderSide(
+                          //                 width: .1, color: Colors.green)),
+                          //         enabledBorder: OutlineInputBorder(
+                          //             borderRadius: BorderRadius.circular(15),
+                          //             borderSide: BorderSide(width: .1)),
+                          //         focusedBorder: OutlineInputBorder(
+                          //             borderRadius: BorderRadius.circular(15),
+                          //             borderSide: BorderSide(width: .1)),
+                          //         prefixIcon: Icon(
+                          //           Icons.perm_identity_rounded,
+                          //           color: Colors.white,
+                          //         ),
+                          //         labelText: "   Username",
+                          //         labelStyle: TextStyle(color: Colors.white)),
+                          //   )),
+                          // ),
                           // =========================================================================================
                           Container(
                             height: 50,
                             width: 270,
                             child: Expanded(
                                 child: TextField(
+                              controller: _email,
                               decoration: InputDecoration(
                                   fillColor: Colors.white38,
                                   filled: true,
@@ -117,32 +136,32 @@ class _SignupPageState extends State<SignupPage> {
                             )),
                           ),
                           // ==============================================================================================
-                          Container(
-                            height: 50,
-                            width: 270,
-                            child: Expanded(
-                                child: TextField(
-                              decoration: InputDecoration(
-                                  fillColor: Colors.white38,
-                                  filled: true,
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                      borderSide: BorderSide(
-                                          width: .1, color: Colors.green)),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                      borderSide: BorderSide(width: .1)),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                      borderSide: BorderSide(width: .1)),
-                                  prefixIcon: Icon(
-                                    Icons.phone,
-                                    color: Colors.white,
-                                  ),
-                                  labelText: "   Phone",
-                                  labelStyle: TextStyle(color: Colors.white)),
-                            )),
-                          ),
+                          // Container(
+                          //   height: 50,
+                          //   width: 270,
+                          //   child: Expanded(
+                          //       child: TextField(
+                          //     decoration: InputDecoration(
+                          //         fillColor: Colors.white38,
+                          //         filled: true,
+                          //         border: OutlineInputBorder(
+                          //             borderRadius: BorderRadius.circular(15),
+                          //             borderSide: BorderSide(
+                          //                 width: .1, color: Colors.green)),
+                          //         enabledBorder: OutlineInputBorder(
+                          //             borderRadius: BorderRadius.circular(15),
+                          //             borderSide: BorderSide(width: .1)),
+                          //         focusedBorder: OutlineInputBorder(
+                          //             borderRadius: BorderRadius.circular(15),
+                          //             borderSide: BorderSide(width: .1)),
+                          //         prefixIcon: Icon(
+                          //           Icons.phone,
+                          //           color: Colors.white,
+                          //         ),
+                          //         labelText: "   Phone",
+                          //         labelStyle: TextStyle(color: Colors.white)),
+                          //   )),
+                          // ),
                           // ========================================================================================
                           // SizedBox(
                           //   height: 40,
@@ -155,6 +174,7 @@ class _SignupPageState extends State<SignupPage> {
                               children: [
                                 Expanded(
                                     child: TextField(
+                                  controller: _password,
                                   decoration: InputDecoration(
                                       fillColor: Colors.white38,
                                       filled: true,
@@ -219,6 +239,7 @@ class _SignupPageState extends State<SignupPage> {
                               children: [
                                 Expanded(
                                     child: TextField(
+                                      controller: _conformpassword,
                                   decoration: InputDecoration(
                                       fillColor: Colors.white38,
                                       filled: true,
@@ -299,7 +320,14 @@ class _SignupPageState extends State<SignupPage> {
                               child: TextButton(
                                   onFocusChange: (value) {},
                                   style: TextButton.styleFrom(),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    if(_password.text==_conformpassword.text){
+                                      signin();
+                                      //  Navigator.pop(context);
+                                    }else{
+                                     print("incorrect pwd");
+                                    }
+                                  },
                                   child: Text(
                                     "Signup",
                                     style: TextStyle(
