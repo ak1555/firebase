@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loginpage/homepage.dart';
 import 'package:loginpage/loginpage.dart';
 import 'package:loginpage/mainpage.dart';
 import 'package:loginpage/signuppage.dart';
@@ -12,7 +13,7 @@ await Firebase.initializeApp(
 );
   runApp(
     MaterialApp(
-      home: MainPage(),
+      home: HomePage(),
       routes: {
         "signup":(context)=>SignupPage()
       },
