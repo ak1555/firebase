@@ -17,7 +17,6 @@ class _HomePageState extends State<HomePage> {
   void addtodo() {
     final data = {"task": _text.text};
     todos.add(data);
-
   }
 
   List ls = ["hii", "helloooo", "oooooooooooooooooiiiiiii", "hy"];
@@ -174,30 +173,55 @@ class _HomePageState extends State<HomePage> {
         decoration: BoxDecoration(
             border: Border.all(width: 3.5, color: Colors.blueAccent),
             borderRadius: BorderRadius.circular(5)),
-        child: ListView.builder(
-          itemCount: ls.length,
-          itemBuilder: (context, index) {
-            return Container(
-              height: 80,
-              margin: EdgeInsets.only(top: 5),
-              decoration: BoxDecoration(
-                  color: Colors.white54,
-                  border: Border.symmetric(
-                      horizontal:
-                          BorderSide(width: .1, color: Colors.blueAccent))),
-              child: ListTile(
-                leading: Text(index.toString()),
-                title: Text(ls[index].toString()),
-                trailing: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.delete,
-                      color: Colors.red[900],
-                    )),
-              ),
+        child: StreamBuilder(
+          stream: todos.orderBy("task").snapshots(),
+          builder: (context, snapshot) {
+            print(snapshot.data!.docs.length);
+            return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                final DocumentSnapshot todosnapshot =
+                    snapshot.data!.docs[index];
+
+                return ListTile(
+                  title: Text(todosnapshot["task"].toString()),
+                  onTap: () {
+                    print(todosnapshot.id);
+                    List ls=[todosnapshot.id,
+                    todosnapshot["task"].toString()
+                    ];
+                    Navigator.pushNamed(context, "update",arguments:ls);
+                  },
+                );
+              },
             );
           },
         ),
+
+        // child: ListView.builder(
+        //   itemCount: ls.length,
+        //   itemBuilder: (context, index) {
+        //     return Container(
+        //       height: 80,
+        //       margin: EdgeInsets.only(top: 5),
+        //       decoration: BoxDecoration(
+        //           color: Colors.white54,
+        //           border: Border.symmetric(
+        //               horizontal:
+        //                   BorderSide(width: .1, color: Colors.blueAccent))),
+        //       child: ListTile(
+        //         leading: Text(index.toString()),
+        //         title: Text(ls[index].toString()),
+        //         trailing: IconButton(
+        //             onPressed: () {},
+        //             icon: Icon(
+        //               Icons.delete,
+        //               color: Colors.red[900],
+        //             )),
+        //       ),
+        //     );
+        //   },
+        // ),
       ),
     );
   }

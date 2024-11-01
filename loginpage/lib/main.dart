@@ -4,6 +4,7 @@ import 'package:loginpage/loginpage.dart';
 import 'package:loginpage/mainpage.dart';
 import 'package:loginpage/signuppage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:loginpage/update.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -13,6 +14,9 @@ void main() async {
   );
   runApp(MaterialApp(
     home: MainPage(),
-    routes: {"signup": (context) => SignupPage()},
+    routes: {
+      "signup": (context) => SignupPage(),
+      "update": (context) => Update(),
+    },
   ));
 }
