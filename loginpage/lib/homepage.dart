@@ -18,6 +18,9 @@ class _HomePageState extends State<HomePage> {
     final data = {"task": _text.text};
     todos.add(data);
   }
+  void deletetodo(id)async{
+    await FirebaseFirestore.instance.collection("Todos").doc(id).delete();
+  }
 
   List ls = ["hii", "helloooo", "oooooooooooooooooiiiiiii", "hy"];
   bool p = true;
@@ -185,6 +188,10 @@ class _HomePageState extends State<HomePage> {
 
                 return ListTile(
                   title: Text(todosnapshot["task"].toString()),
+                  trailing: IconButton(onPressed: () {
+                     deletetodo(todosnapshot.id);
+                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Item Deleted")));
+                  }, icon: Icon(Icons.delete_outline)),
                   onTap: () {
                     print(todosnapshot.id);
                     List ls=[todosnapshot.id,

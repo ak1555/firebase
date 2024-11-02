@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Update extends StatefulWidget {
@@ -10,10 +11,15 @@ class Update extends StatefulWidget {
 class _UpdateState extends State<Update> {
   List? ls;
   TextEditingController _text = TextEditingController();
+  final CollectionReference todos =
+      FirebaseFirestore.instance.collection('Todos');
   void getdata() {
     setState(() {
       _text.text = ls![1].toString();
     });
+  }
+  void updatedata(id){
+    todos.doc(id).update({'task':_text.text});
   }
 
   @override
@@ -36,19 +42,22 @@ class _UpdateState extends State<Update> {
           child:
               // Text(data[0].toString())
               Card(
-                child: Container(
-                            height: 170,
-                            width: 300,
-                            child: Column(
+            child: Container(
+              height: 170,
+              width: 300,
+              child: Column(
                 children: [
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Container(
                     height: 55,
                     width: 251,
                     child: Expanded(
-                        child: TextField(onTap: () {
-                          getdata();
-                        },
+                        child: TextField(
+                      onTap: () {
+                        getdata();
+                      },
                       controller: _text,
                       decoration: InputDecoration(
                           hintText: "Tap me",
@@ -70,19 +79,16 @@ class _UpdateState extends State<Update> {
                             shape: BeveledRectangleBorder(
                                 borderRadius: BorderRadius.circular(3))),
                         onPressed: () {
-                          // addtodo();
-                          _text.clear();
-                          setState(() {
-                            // p = false;
-                          });
+                          updatedata(ls![0]);
+                       
                           Navigator.pop(context);
                         },
                         child: Text("Add")),
                   )
                 ],
-                            ),
-                          ),
               ),
+            ),
+          ),
         ),
       ),
     );
