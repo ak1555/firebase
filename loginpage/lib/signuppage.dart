@@ -27,7 +27,7 @@ class _SignupPageState extends State<SignupPage> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: Column(
+        child: ListView(
           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(

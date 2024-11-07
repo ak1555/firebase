@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -19,11 +20,24 @@ class _LoginPageState extends State<LoginPage> {
           email: _email.text.trim(), password: _password.text.trim());
     }
 
+    Future loginwithgoogle() async {
+      final firebaseauth = await FirebaseAuth.instance;
+      final googleservice = await GoogleSignIn();
+      final googleuser = await googleservice.signIn();
+      print(googleuser);
+      final GoogleSignInAuthentication? googleauth =
+          await googleuser?.authentication;
+      final cred = GoogleAuthProvider.credential(
+          accessToken: googleauth?.accessToken, idToken: googleauth?.idToken);
+      final user = await firebaseauth.signInWithCredential(cred);
+      print(user);
+    }
+
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: Column(
+        child: ListView(
           children: [
             Container(
               height: 889,
@@ -73,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                             width: 270,
                             child: Expanded(
                                 child: TextField(
-                                  controller: _email,
+                              controller: _email,
                               decoration: InputDecoration(
                                   fillColor: Colors.white38,
                                   filled: true,
@@ -107,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                               children: [
                                 Expanded(
                                     child: TextField(
-                                      controller: _password,
+                                  controller: _password,
                                   decoration: InputDecoration(
                                       fillColor: Colors.white38,
                                       filled: true,
@@ -161,7 +175,9 @@ class _LoginPageState extends State<LoginPage> {
                                   border: Border.all(
                                       width: .3, color: Colors.white)),
                               child: TextButton(
-                                  onPressed: () {login();},
+                                  onPressed: () {
+                                    login();
+                                  },
                                   child: Text(
                                     "Login",
                                     style: TextStyle(
@@ -179,11 +195,22 @@ class _LoginPageState extends State<LoginPage> {
                     height: 70,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
-                        "Already have an Account?",
-                        style: TextStyle(color: Colors.white),
+                      GestureDetector(
+                        onTap: loginwithgoogle,
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 35,
+                          width: 165,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(25)),
+                          child: Text(
+                            "Signup with Google?",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
                       ),
                       SizedBox(
                         width: 5,
