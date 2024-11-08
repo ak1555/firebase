@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "415293420276-c66rhssl2vmg5hcgpk9krptmitq1dqom.apps.googleusercontent.com",
+          "client_id": "415293420276-coskbnkelkisufj7aqmvvn91dm4e5kc0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.application",
+            "certificate_hash": "658babb438970825cebf4d902aa2c03557e8ee3b"
+          }
+        },
+        {
+          "client_id": "415293420276-npsv70tckoln5dkki72biha70pkl361i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -51,7 +59,7 @@
           }
         },
         {
-          "client_id": "415293420276-c66rhssl2vmg5hcgpk9krptmitq1dqom.apps.googleusercontent.com",
+          "client_id": "415293420276-npsv70tckoln5dkki72biha70pkl361i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -80,7 +88,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "415293420276-c66rhssl2vmg5hcgpk9krptmitq1dqom.apps.googleusercontent.com",
+          "client_id": "415293420276-rv4gj8fqtu3hlbaqrgafgv1ihr5vilt5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.loginpage",
+            "certificate_hash": "0a6853d7abe2cbdebf96cd8b96f0e7aa1055e357"
+          }
+        },
+        {
+          "client_id": "415293420276-npsv70tckoln5dkki72biha70pkl361i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
